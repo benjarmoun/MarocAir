@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-<%--    <script src="https://cdn.tailwindcss.com"></script>--%>
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <!-- component -->
