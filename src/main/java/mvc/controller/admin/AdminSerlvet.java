@@ -1,11 +1,11 @@
-package mvc.controller.client;
+package mvc.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mvc.DAO.client.PersonneDAO;
-import mvc.model.client.Personne;
+import mvc.DAO.AdminDAO;
+import mvc.model.Admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 //@WebServlet()
 
 
-public class PesonneSerlvet extends HttpServlet {
+public class AdminSerlvet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,20 +24,24 @@ public class PesonneSerlvet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        Personne p1 = new Personne();
-        p1.setUsername(req.getParameter("username"));
-        p1.setPassword(req.getParameter("password"));
-        PersonneDAO pO = new PersonneDAO();
-        PrintWriter pr=resp.getWriter();
+        Admin admin = new Admin();
+        AdminDAO adminDAO = null;
+        admin.setUsername(req.getParameter("username"));
+        admin.setPassword(req.getParameter("password"));
 
         try {
-            if (pO.login(p1)) {
-            pr.println("true");
-            }else pr.println("fasle");
+            adminDAO = new AdminDAO();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        PrintWriter pr = resp.getWriter();
 
+        try {
+            if (adminDAO.login(admin)) {
+                pr.println("true");
+            } else pr.println("false");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
