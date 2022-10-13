@@ -1,4 +1,4 @@
-package mvc.model;
+package mvc.model.client;
 
 public class Personne {
     private String username, password;
@@ -6,6 +6,9 @@ public class Personne {
     public Personne(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Personne() {
     }
 
     public String getUsername() {
