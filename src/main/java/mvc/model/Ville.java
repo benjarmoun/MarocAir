@@ -4,6 +4,9 @@ public class Ville {
     private int id;
     private String nom;
 
+    public Ville() {
+    }
+
     public Ville(int id, String nom) {
         this.id = id;
         this.nom = nom;
