@@ -1,4 +1,4 @@
-package mvc.model.client;
+package mvc.model;
 
 public class Personne {
     private String username, password;
