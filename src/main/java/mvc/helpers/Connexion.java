@@ -17,7 +17,7 @@ public class Connexion {
     private static final String HOST = "localhost";
     private static final String DATA_BASE = "test3";
     private static final int PORT = 3306;
-    private static final String URL = "jdbc:mysql://localhost:3306/test3";
+    private static final String URL = "jdbc:mysql://localhost:3306/marocair";
     private static final String USER = "root";
     private static final String PASS = "";
 

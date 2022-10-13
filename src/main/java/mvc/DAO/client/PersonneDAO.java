@@ -19,7 +19,7 @@ public class PersonneDAO {
     public boolean login(Personne personne) throws SQLException, ClassNotFoundException {
 
         startConnection();
-        PreparedStatement stmt = connect.prepareStatement("select count(*) from personne where username = ? and password = ?");
+        PreparedStatement stmt = connect.prepareStatement("select count(*) from admin where username = ? and password = ?");
 
         stmt.setString(1, personne.getUsername());
         stmt.setString(2, personne.getPassword());
