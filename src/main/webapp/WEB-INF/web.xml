@@ -9,8 +9,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>p1</servlet-name>
-        <url-pattern>/PesonneSerlvet</url-pattern>
-        <url-pattern>*.admin</url-pattern>
+        <url-pattern>*.ad</url-pattern>
         <!--        <url-pattern>*.personne</url-pattern>-->
     </servlet-mapping>
 </web-app>
