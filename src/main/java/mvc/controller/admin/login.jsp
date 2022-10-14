@@ -3,14 +3,14 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
-<%--    <script src="https://cdn.tailwindcss.com"></script>--%>
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <!-- component -->
 <body class="bg-gray-10 ">
 <div class="flex justify-center h-screen w-screen items-center">
     <div class="w-full md:w-1/2 flex flex-col items-center ">
-        <form action="../PesonneSerlvet" method="POST">
+        <form class="w-full flex flex-col items-center " action="PesonneSerlvet" method="POST">
             <!-- text login -->
             <h1 class="text-center text-2xl font-bold text-gray-600 mb-6">LOGIN</h1>
             <!-- email input -->
@@ -26,13 +26,13 @@
                        placeholder="Password">
             </div>
             <!-- remember input -->
-            <div class="w-3/4 flex flex-row justify-between">
+            <div class="w-1/2 flex flex-row justify-between">
                 <div class=" flex items-center gap-x-1">
-                    <input type="checkbox" name="remember" id="" class=" w-4 h-4  ">
+                    <input type="checkbox" name="remember" id="" class=" w-4 h-4 ">
                     <label for="" class="text-sm text-slate-400">Remember me</label>
                 </div>
                 <div>
-                    <a href="#" class="text-sm text-slate-400 hover:text-blue-500">Forgot?</a>
+                    <a href="Dashboard.jsp" class="text-sm text-slate-400 hover:text-blue-500">Forgot?</a>
                 </div>
             </div>
             <!-- button -->
@@ -46,4 +46,3 @@
     </div>
 </div>
 </body>
-</html>
