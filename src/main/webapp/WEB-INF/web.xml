@@ -5,7 +5,7 @@
          version="5.0">
     <servlet>
         <servlet-name>p1</servlet-name>
-        <servlet-class>mvc.controller.client.PesonneSerlvet</servlet-class>
+        <servlet-class>mvc.controller.admin.AdminSerlvet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>p1</servlet-name>

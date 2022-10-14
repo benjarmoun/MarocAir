@@ -21,10 +21,24 @@ public class Connexion {
     private static final String USER = "root";
     private static final String PASS = "";
 
-    public static void startConnection() throws ClassNotFoundException, SQLException, SQLException {
-        Class.forName(DRIVER);
 
-        connect = DriverManager.getConnection(URL, "root", "");
+    static {
+        try {
+            Class.forName(DRIVER);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            connect = DriverManager.getConnection(URL, "root", "");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Connection getConnection() throws ClassNotFoundException, SQLException, SQLException {
+        return connect;
+
     }
 }
 

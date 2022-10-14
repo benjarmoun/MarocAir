@@ -1,14 +1,14 @@
-package mvc.model.client;
+package mvc.metier.entities;
 
-public class Personne {
+public class Admin {
     private String username, password;
 
-    public Personne(String username, String password) {
+    public Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public Personne() {
+    public Admin() {
     }
 
     public String getUsername() {
