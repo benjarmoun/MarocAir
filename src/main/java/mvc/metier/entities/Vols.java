@@ -6,12 +6,12 @@ public class Vols {
     private int id, nbr_place;
     private Time date_dep, date_arr;
     private float prix;
-    private Ville ville_dep, ville_arr;
+    private int ville_dep, ville_arr;
 
     public Vols() {
     }
 
-    public Vols(int id, int nbr_place, Time date_dep, Time date_arr, float prix, Ville ville_dep, Ville ville_arr) {
+    public Vols(int id, int nbr_place, Time date_dep, Time date_arr, float prix, int ville_dep, int ville_arr) {
 
 
         this.id = id;
