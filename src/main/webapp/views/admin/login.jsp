@@ -10,7 +10,7 @@
 <body class="bg-gray-10 ">
 <div class="flex justify-center h-screen w-screen items-center">
     <div class="w-full md:w-1/2 flex flex-col items-center ">
-        <form class="w-full flex flex-col items-center " action="PesonneSerlvet" method="POST">
+        <form class="w-full flex flex-col items-center " action="login.ad" method="POST">
             <!-- text login -->
             <h1 class="text-center text-2xl font-bold text-gray-600 mb-6">LOGIN</h1>
             <!-- email input -->
