@@ -18,7 +18,11 @@ public class AdminSerlvet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        String path = req.getServletPath();
+
+        if (path.equals("/login.ad")) {
+            req.getRequestDispatcher("views/admin/login.jsp").forward(req, resp);
+        }
 
     }
 
