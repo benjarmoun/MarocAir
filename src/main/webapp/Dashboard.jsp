@@ -64,7 +64,7 @@
 
     <div class="flex w-full justify-center">
         <!-- aside -->
-        <aside class="flex w-1/6 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2" style="height: 90.5vh"
+        <aside class="flex h-auto w-1/6 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2"
                x-show="asideOpen">
             <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
                 <span class="text-2xl"><i class="bx bx-home"></i></span>
@@ -86,26 +86,11 @@
                 </svg>
                 <span class="text-red-500 font-semibold">Log Out</span>
             </a>
-
-<%--            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">--%>
-<%--                <span class="text-2xl"><i class="bx bx-heart"></i></span>--%>
-<%--                <span>My Favourite</span>--%>
-<%--            </a>--%>
-
-<%--            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">--%>
-<%--                <span class="text-2xl"><i class="bx bx-user"></i></span>--%>
-<%--                <span>Profile</span>--%>
-<%--            </a>--%>
         </aside>
 
     <div class="w-5/6 p-4">
         <div class="p-5 ">
             <div class="m-6 mx-auto w-full">
-                <%--            <div class="col-md-10 mx-auto">--%>
-                <%--                <div class="card">--%>
-                <%--                    <div class="card-body bg-light">--%>
-                <%--                        <div class="table-responsive">--%>
-                <%--                            <div class="">--%>
                 <h2></h2>
                 <form class=" m-6 d-flex flex-column"  method="post" action="">
                     <div class="flex w-full justify-around">
@@ -137,10 +122,6 @@
                     </div>
                     <button class="btn  btn-active btn-primary mt-0 m-3" type="submit"> SEARCH </button>
                 </form>
-                <%--                        </div>--%>
-                <%--                    </div>--%>
-                <%--                </div>--%>
-                <%--            </div>--%>
             </div>
         </div>
         <div class="mx-11  overflow-x-auto">
