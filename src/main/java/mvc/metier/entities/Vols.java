@@ -22,4 +22,60 @@ public class Vols {
         this.ville_dep = ville_dep;
         this.ville_arr = ville_arr;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getNbr_place() {
+        return nbr_place;
+    }
+
+    public void setNbr_place(int nbr_place) {
+        this.nbr_place = nbr_place;
+    }
+
+    public Time getDate_dep() {
+        return date_dep;
+    }
+
+    public void setDate_dep(Time date_dep) {
+        this.date_dep = date_dep;
+    }
+
+    public Time getDate_arr() {
+        return date_arr;
+    }
+
+    public void setDate_arr(Time date_arr) {
+        this.date_arr = date_arr;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public int getVille_dep() {
+        return ville_dep;
+    }
+
+    public void setVille_dep(int ville_dep) {
+        this.ville_dep = ville_dep;
+    }
+
+    public int getVille_arr() {
+        return ville_arr;
+    }
+
+    public void setVille_arr(int ville_arr) {
+        this.ville_arr = ville_arr;
+    }
 }
