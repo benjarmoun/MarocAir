@@ -1,15 +1,13 @@
 package mvc.DAO;
 
-import mvc.model.Vols;
+import mvc.metier.entities.Vols;
 
 import java.sql.SQLException;
 
-import static mvc.helpers.Connexion.startConnection;
 
 public class VolsDAO {
 
     public VolsDAO() throws SQLException, ClassNotFoundException {
-        startConnection();
 
     }
 

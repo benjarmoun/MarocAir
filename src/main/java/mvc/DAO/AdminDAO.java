@@ -1,41 +1,24 @@
 package mvc.DAO;
 
+import mvc.DAO.repository.Auth;
 import mvc.helpers.Hash;
-import mvc.model.Admin;
-import mvc.model.Admin;
+import mvc.metier.entities.Admin;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static mvc.helpers.Connexion.connect;
-import static mvc.helpers.Connexion.startConnection;
+import static mvc.helpers.Connexion.getConnection;
 
 //import static mvc.helpers.Connexion.connect;
 //import static mvc.helpers.Connexion.startConnection;
 
-public class AdminDAO {
-    public AdminDAO() throws SQLException, ClassNotFoundException {
-        startConnection();
-    }
-
-
-    public Admin getAdmin(String username) throws SQLException {
-        Admin admin = new Admin();
-        PreparedStatement stmt = connect.prepareStatement("select * from admin where username = ?");
-        stmt.setString(1, username);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            admin.setPassword(rs.getString("password"));
-        }
-
-        return admin;
-    }
-
+public class AdminDAO implements Auth<Admin> {
+    @Override
     public boolean login(Admin admin) throws Exception {
-
-
+        Connection connect = getConnection();
         PreparedStatement stmt = connect.prepareStatement("select * from admin where username = ?");
         stmt.setString(1, admin.getUsername());
         ResultSet rs = stmt.executeQuery();
@@ -47,7 +30,8 @@ public class AdminDAO {
         return false;
     }
 
-    public static void main(String[] args) {
-        System.out.println("dffdsfds");
+    @Override
+    public boolean register(Admin admin) {
+        return false;
     }
 }

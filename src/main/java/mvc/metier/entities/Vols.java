@@ -1,4 +1,4 @@
-package mvc.model;
+package mvc.metier.entities;
 
 import java.sql.Time;
 

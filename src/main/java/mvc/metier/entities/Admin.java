@@ -1,4 +1,4 @@
-package mvc.model;
+package mvc.metier.entities;
 
 public class Admin {
     private String username, password;

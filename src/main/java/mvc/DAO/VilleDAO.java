@@ -1,7 +1,8 @@
 package mvc.DAO;
 
-import mvc.model.Ville;
+import mvc.metier.entities.Ville;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,16 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static mvc.helpers.Connexion.connect;
-import static mvc.helpers.Connexion.startConnection;
+import static mvc.helpers.Connexion.getConnection;
 
 public class VilleDAO {
     public VilleDAO() throws SQLException, ClassNotFoundException {
 
-        startConnection();
     }
 
 
-    public List<Ville> getAllVilles() throws SQLException {
+    public List<Ville> getAllVilles() throws SQLException, ClassNotFoundException {
+        Connection connect = getConnection();
+
         List<Ville> villes = new ArrayList<Ville>();
         PreparedStatement stm = connect.prepareStatement("select * from villes");
         ResultSet rs = stm.executeQuery();

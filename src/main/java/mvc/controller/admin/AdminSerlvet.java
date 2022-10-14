@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mvc.DAO.AdminDAO;
-import mvc.model.Admin;
+import mvc.metier.entities.Admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,11 +29,7 @@ public class AdminSerlvet extends HttpServlet {
         admin.setUsername(req.getParameter("username"));
         admin.setPassword(req.getParameter("password"));
 
-        try {
-            adminDAO = new AdminDAO();
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        adminDAO = new AdminDAO();
         PrintWriter pr = resp.getWriter();
 
         try {
