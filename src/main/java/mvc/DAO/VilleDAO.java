@@ -20,8 +20,8 @@ public class VilleDAO implements DAO<Ville> {
     }
 
     @Override
-    public Optional<Ville> get(long id) {
-        return Optional.empty();
+    public Ville get(int id) {
+        return null;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class VilleDAO implements DAO<Ville> {
     }
 
     @Override
-    public long save(Ville ville) {
-        return 0;
+    public boolean save(Ville ville) {
+        return false;
     }
 
     @Override
-    public void update(Ville ville, String[] params) {
+    public void update(Ville ville, int i) {
 
     }
 

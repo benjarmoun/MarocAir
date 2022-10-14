@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public interface DAO<T> {
 
-    Optional<T> get(long id);
+    T get(int id);
 
     List<T> getAll() throws SQLException, ClassNotFoundException;
 
-    long save(T t);
+    boolean save(T t) throws SQLException, ClassNotFoundException;
 
-    void update(T t, String[] params);
+    void update(T t, int i);
 
     void delete(long id);
 
