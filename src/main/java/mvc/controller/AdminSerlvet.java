@@ -1,4 +1,4 @@
-package mvc.controller.admin;
+package mvc.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -28,20 +28,30 @@ public class AdminSerlvet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Admin admin = new Admin();
-        AdminDAO adminDAO = null;
-        admin.setUsername(req.getParameter("username"));
-        admin.setPassword(req.getParameter("password"));
+        String path = req.getServletPath();
 
-        adminDAO = new AdminDAO();
-        PrintWriter pr = resp.getWriter();
+        if (path.equals("/login.ad")) {
 
-        try {
-            if (adminDAO.login(admin)) {
-                pr.println("true");
-            } else pr.println("false");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            Admin admin = new Admin();
+            AdminDAO adminDAO = null;
+            admin.setUsername(req.getParameter("username"));
+            admin.setPassword(req.getParameter("password"));
+
+            adminDAO = new AdminDAO();
+            PrintWriter pr = resp.getWriter();
+
+            try {
+                if (adminDAO.login(admin)) {
+                    resp.sendRedirect("/dashboard.vol");
+//                    req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
+
+                } else pr.println("false");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
         }
+
+
     }
 }
