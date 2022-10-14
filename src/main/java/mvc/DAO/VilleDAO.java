@@ -1,5 +1,6 @@
 package mvc.DAO;
 
+import mvc.DAO.repository.DAO;
 import mvc.metier.entities.Ville;
 
 import java.sql.Connection;
@@ -8,41 +9,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static mvc.helpers.Connexion.connect;
 import static mvc.helpers.Connexion.getConnection;
 
-public class VilleDAO {
+public class VilleDAO implements DAO<Ville> {
     public VilleDAO() throws SQLException, ClassNotFoundException {
 
     }
 
+    @Override
+    public Optional<Ville> get(long id) {
+        return Optional.empty();
+    }
 
-    public List<Ville> getAllVilles() throws SQLException, ClassNotFoundException {
+    @Override
+    public List<Ville> getAll() throws SQLException, ClassNotFoundException {
+
         Connection connect = getConnection();
-
         List<Ville> villes = new ArrayList<Ville>();
         PreparedStatement stm = connect.prepareStatement("select * from villes");
         ResultSet rs = stm.executeQuery();
         while (rs.next()) {
             villes.add(new Ville(rs.getInt("id"), rs.getString("nom")));
         }
-
         return villes;
     }
 
-
-    public Ville getVille(int id) throws SQLException {
-        Ville ville = new Ville();
-        PreparedStatement stm = connect.prepareStatement("select * ville from villes where id = ?");
-        stm.setInt(1, id);
-        ResultSet rs = stm.executeQuery();
-        if (rs.next()) {
-           ville.setId(rs.getInt("id"));
-           ville.setNom(rs.getString("nom"));
-        }
-
-        return null;
+    @Override
+    public long save(Ville ville) {
+        return 0;
     }
 
+    @Override
+    public void update(Ville ville, String[] params) {
+
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
 }
