@@ -6,13 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>--%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+
+
 <html>
 <head>
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.31.0/dist/full.css" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"/>
 </head>
 <body>
 <!-- page -->
@@ -24,7 +28,10 @@
             <button type="button" class="text-3xl" @click="asideOpen = !asideOpen"><i class="bx bx-menu"></i></button>
         </div>
         <div class="flex items-center space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M3.414 13.778 2 15.192l4.949 2.121 2.122 4.95 1.414-1.414-.707-3.536L13.091 14l3.61 7.704 1.339-1.339-1.19-10.123 2.828-2.829a2 2 0 1 0-2.828-2.828l-2.903 2.903L3.824 6.297 2.559 7.563l7.644 3.67-3.253 3.253-3.536-.708z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 style="fill: rgba(0, 0, 0, 1);">
+                <path d="M3.414 13.778 2 15.192l4.949 2.121 2.122 4.95 1.414-1.414-.707-3.536L13.091 14l3.61 7.704 1.339-1.339-1.19-10.123 2.828-2.829a2 2 0 1 0-2.828-2.828l-2.903 2.903L3.824 6.297 2.559 7.563l7.644 3.67-3.253 3.253-3.536-.708z"></path>
+            </svg>
             <h1 class="font-bold text-2xl">MarocAir</h1>
         </div>
 
@@ -32,14 +39,14 @@
         <div>
             <button type="button" @click="profileOpen = !profileOpen" @click.outside="profileOpen = false"
                     class="h-9 w-9 overflow-hidden rounded-full">
-                <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co" />
+                <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co"/>
             </button>
 
             <!-- dropdown profile -->
             <div class="absolute right-2 mt-1 w-48 divide-y divide-gray-200 rounded-md border border-gray-200 bg-white shadow-md"
                  x-show="profileOpen" x-transition>
                 <div class="flex items-center space-x-2 p-2">
-                    <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co" class="h-9 w-9 rounded-full" />
+                    <img src="https://plchldr.co/i/40x40?bg=111111" alt="plchldr.co" class="h-9 w-9 rounded-full"/>
                     <div class="font-medium">Hafiz Haziq</div>
                 </div>
 
@@ -94,35 +101,51 @@
             <div class="p-5 ">
                 <div class="m-6 mx-auto w-full">
                     <h2></h2>
-                    <form class=" m-6 d-flex flex-column"  method="post" action="">
+                    <form class=" m-6 d-flex flex-column" method="post" action="">
                         <div class="flex w-full justify-around">
                             <div class="flex w-full flex-col p-3">
-                                <label class="mb-2 font-semibold" for="depart" >Depart</label>
-                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="depart" name="depart" placeholder="Depart">
+                                <label class="mb-2 font-semibold">Depart</label>
+                                <select name="depart" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <c:forEach items="${villes}" var="ville">
 
-                                <label class="mb-2 font-semibold " for="nbr_pass">Number of passengers</label>
-                                <input type="number" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="nbr_pass" name="nbr_pass" min="1" value="1" />
+                                        <option value="${ville.id}"> ${ville.nom}</option>
+                                    </c:forEach>
 
-                                <label class="mb-2 font-semibold" for="dated">Depart date</label>
-                                <input type="date" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="dated" name="dated" >
+                                </select>
+
+                                <label class="mb-2 font-semibold " for="nbr_pass">nombre de place</label>
+                                <input type="number"
+                                       class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
+                                       id="nbr_pass" name="nbr_pass" min="1" value="1"/>
+
+                                <label class="mb-2 font-semibold" for="dated"> Heure depart</label>
+                                <input type="time"
+                                       class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
+                                       id="dated" name="dated">
                             </div>
+
                             <div class="flex w-full flex-col p-3">
-                                <label class="mb-2 font-semibold" for="arrive">Destination</label>
-                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="arrive" name="arrive" placeholder="Arrive">
+                                <label class="mb-2 font-semibold">Arriver</label>
+                                <select name="Arriver" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <c:forEach items="${villes}" var="ville">
 
-                                <div class="mt-9 mb-5" >
-                                    <input type="checkbox" name="round_trip" value="round_trip" id="round_trip" onchange="displayReturnDateForm()">
-                                    <label class="mb-2 font-semibold" for="arrive">Round-trip</label>
-                                </div>
-                                <div id="return_date" style="display:none;">
-                                    <label class="mb-2 font-semibold" for="datea">Return date</label>
-                                    <input type="date" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="datea" name="datea">
-                                </div>
+                                        <option value="${ville.id}"> ${ville.nom}</option>
+                                    </c:forEach>
 
+                                </select>
+                                <label class="mb-2 font-semibold " for="nbr_pass">prix</label>
+                                <input type="number"
+                                       class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
+                                       id="nbrd_pass" name="nbr_pass" min="1" value="1"/>
 
+                                <label class="mb-2 font-semibold" for="dated"> Heure d'arriver</label>
+                                <input type="time"
+                                       class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
+                                       id="dadted" name="dated">
                             </div>
+
                         </div>
-                        <button class="btn  btn-active btn-primary mt-0 m-3" type="submit"> SEARCH </button>
+                        <button class="btn  btn-active btn-primary mt-0 m-3" type="submit"> Ajouter trajet</button>
                     </form>
                 </div>
             </div>
@@ -130,41 +153,67 @@
                 <table class="table table-compact table-zebra w-full">
                     <thead>
                     <tr>
-                        <th></th>
+                        <th>ID</th>
                         <th>Depart</th>
                         <th>Arrivé</th>
                         <th>Date de depart</th>
                         <th>Date d'arrivé</th>
                         <th>Prix</th>
+                        <th>nombre de place</th>
+                        <th>edit</th>
+                        <th>supprimé</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Littel, Schaden and Vandervort</td>
-                        <td>Canada</td>
-                        <td>12/16/2020</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Zemlak, Daniel and Leannon</td>
-                        <td>United States</td>
-                        <td>12/5/2020</td>
-                    </tr>
+                    <c:forEach items="${vols}" var="vols">
+                        <tr>
+                            <th>
+                                    ${vols.id}/
+                            </th>
+                            <td>
+                                    ${vols.nVille_dep}
+                            </td>
+                            <td>
+                                    ${vols.nVille_arr}
+                            </td>
+
+                            <td>
+                                    ${vols.date_dep}
+                            </td>
+                            <td>
+                                    ${vols.date_arr}
+                            </td>
+
+                            <td>
+                                    ${vols.prix} DH
+                            </td>
+                            <td>
+                                    ${vols.nbr_place}
+                            </td>
+                            <td>
+                                edit
+                            </td>
+                            <td>
+                                suppr
+                            </td>
+
+
+                        </tr>
+                    </c:forEach>
+
 
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th></th>
+                        <th>ID</th>
                         <th>Depart</th>
                         <th>Arrivé</th>
                         <th>Date de depart</th>
                         <th>Date d'arrivé</th>
                         <th>Prix</th>
+                        <th>nombre de place</th>
+                        <th>edit</th>
+                        <th>supprimé</th>
                     </tr>
                     </tfoot>
                 </table>
@@ -186,7 +235,7 @@
 <script>
     function displayReturnDateForm() {
         var input = document.querySelector('#round_trip');
-        input.addEventListener('change', function() {
+        input.addEventListener('change', function () {
             if (input.checked) {
                 document.getElementById("return_date").style.display = "block";
             } else {
@@ -194,5 +243,6 @@
             }
         });
     }
+
     displayReturnDateForm();
 </script>

@@ -4,7 +4,9 @@ import mvc.DAO.repository.DAO;
 import mvc.metier.entities.Vols;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +30,13 @@ public class VolsDAO implements DAO<Vols> {
 
     @Override
     public List<Vols> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        List<Vols> vols = new ArrayList<>();
+        PreparedStatement stm = getConnection().prepareStatement("SELECT v.id, vd.nom ville_depart, va.nom ville_arriver, date_dep, date_arr, prix, nbr_place from vol v join villes vd on v.id_depart = vd.id join villes va on va.id = v.id_arrive");
+        ResultSet rs = stm.executeQuery();
+        while (rs.next()) {
+            vols.add(new Vols(rs.getInt("id"), rs.getInt("nbr_place"), rs.getTime("date_dep"), rs.getTime("date_arr"), rs.getFloat("prix"), rs.getString("ville_depart"), rs.getString("ville_arriver")));
+        }
+        return vols;
     }
 
     @Override

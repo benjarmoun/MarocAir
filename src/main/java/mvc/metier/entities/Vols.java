@@ -7,6 +7,33 @@ public class Vols {
     private Time date_dep, date_arr;
     private float prix;
     private int ville_dep, ville_arr;
+    private String nVille_dep,nVille_arr;
+
+    public String getnVille_dep() {
+        return nVille_dep;
+    }
+
+    public void setnVille_dep(String nVille_dep) {
+        this.nVille_dep = nVille_dep;
+    }
+
+    public String getnVille_arr() {
+        return nVille_arr;
+    }
+
+    public void setnVille_arr(String nVille_arr) {
+        this.nVille_arr = nVille_arr;
+    }
+
+    public Vols(int id, int nbr_place, Time date_dep, Time date_arr, float prix, String nVille_dep, String nVille_arr) {
+        this.id = id;
+        this.nbr_place = nbr_place;
+        this.date_dep = date_dep;
+        this.date_arr = date_arr;
+        this.prix = prix;
+        this.nVille_dep = nVille_dep;
+        this.nVille_arr = nVille_arr;
+    }
 
     public Vols() {
     }
