@@ -13,13 +13,15 @@
         <servlet-name>vol</servlet-name>
         <servlet-class>mvc.controller.VolServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>admin</servlet-name>
-        <url-pattern>*.ad</url-pattern>
-        <!--        <url-pattern>*.personne</url-pattern>-->
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>vol</servlet-name>
-        <url-pattern>*.vol</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>admin</servlet-name>-->
+<!--        <url-pattern>*.ad</url-pattern>-->
+<!--        &lt;!&ndash;        <url-pattern>*.personne</url-pattern>&ndash;&gt;-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>vol</servlet-name>-->
+<!--        <url-pattern>*.vol</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+
 </web-app>
