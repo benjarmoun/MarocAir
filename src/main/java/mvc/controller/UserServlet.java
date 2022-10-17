@@ -50,6 +50,28 @@ public class UserServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
+        else
+            if (path.equals("/register.us")){
+                User user = new User();
+                UserDAO userDAO = null;
+                user.setFname(req.getParameter("fname"));
+                user.setLname(req.getParameter("lname"));
+                user.setEmail(req.getParameter("email"));
+                user.setPassword(req.getParameter("password"));
+
+                userDAO = new UserDAO();
+                PrintWriter pr = resp.getWriter();
+
+                try {
+                    if (userDAO.register(user)) {
+                        resp.sendRedirect("/login.us");
+
+                    } else pr.println("fals");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
 
 
 
