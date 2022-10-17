@@ -1,4 +1,5 @@
 package mvc.helpers;
+//import io.github.cdimascio.dotenv.Dotenv;
 
 //import java.sql.Connection;
 //import java.sql.DriverManager;
@@ -12,6 +13,7 @@ public class Connexion {
 
 
     public static Connection connect;
+//    static Dotenv dotenv = Dotenv.load();
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String HOST = "localhost";
