@@ -15,6 +15,6 @@ public interface DAO<T> {
 
     void update(T t, int i);
 
-    void delete(long id);
+    boolean delete(int id) throws SQLException, ClassNotFoundException;
 
 }

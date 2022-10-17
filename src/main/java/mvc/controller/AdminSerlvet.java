@@ -32,15 +32,12 @@ public class AdminSerlvet extends HttpServlet {
         String path = req.getServletPath();
 
         if (path.equals("/login.ad")) {
-
             Admin admin = new Admin();
             AdminDAO adminDAO = null;
             admin.setUsername(req.getParameter("username"));
             admin.setPassword(req.getParameter("password"));
-
             adminDAO = new AdminDAO();
             PrintWriter pr = resp.getWriter();
-
             try {
                 if (adminDAO.login(admin)) {
                     resp.sendRedirect("/dashboard.vol");

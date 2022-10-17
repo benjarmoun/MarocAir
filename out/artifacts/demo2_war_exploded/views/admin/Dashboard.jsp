@@ -101,11 +101,46 @@
             <div class="p-5 ">
                 <div class="m-6 mx-auto w-full">
                     <h2></h2>
-                    <form class=" m-6 d-flex flex-column" method="post" action="">
+                    <!-- component -->
+                    <c:if test="${erreur.size()!=0}">
+                        <div class="bg-red-50 border-l-8 border-red-900 mb-2">
+                            <div class="flex items-center">
+                                <div class="p-2">
+                                    <div class="flex items-center">
+                                        <div class="ml-2">
+                                            <svg class="h-8 w-8 text-red-900 mr-2 cursor-pointer"
+                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <p class="px-6 py-4 text-red-900 font-semibold text-lg">Please corriger les
+                                            erreurs
+                                            suivant :
+                                        </p>
+                                    </div>
+                                    <div class="px-16 mb-4">
+                                        <c:forEach items="${erreur}" var="error">
+                                            <li class="text-md font-bold text-red-500 text-sm">${error}</li>
+
+                                        </c:forEach>
+                                        <li class="text-md font-bold text-red-500 text-sm">Email field is required.</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+
+                    <form class=" m-6 d-flex flex-column" method="post" action="add.vol">
                         <div class="flex w-full justify-around">
                             <div class="flex w-full flex-col p-3">
                                 <label class="mb-2 font-semibold">Depart</label>
-                                <select name="depart" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                <select name="ville_dep"
+                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <option value=""></option>
+
                                     <c:forEach items="${villes}" var="ville">
 
                                         <option value="${ville.id}"> ${ville.nom}</option>
@@ -116,17 +151,20 @@
                                 <label class="mb-2 font-semibold " for="nbr_pass">nombre de place</label>
                                 <input type="number"
                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
-                                       id="nbr_pass" name="nbr_pass" min="1" value="1"/>
+                                       id="nbr_pass" name="nbr_place" min="1" value="1"/>
 
                                 <label class="mb-2 font-semibold" for="dated"> Heure depart</label>
                                 <input type="time"
                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
-                                       id="dated" name="dated">
+                                       id="dated" name="heure_dep">
                             </div>
 
                             <div class="flex w-full flex-col p-3">
                                 <label class="mb-2 font-semibold">Arriver</label>
-                                <select name="Arriver" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                <select name="ville_arr"
+                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <option value=""></option>
+
                                     <c:forEach items="${villes}" var="ville">
 
                                         <option value="${ville.id}"> ${ville.nom}</option>
@@ -136,12 +174,12 @@
                                 <label class="mb-2 font-semibold " for="nbr_pass">prix</label>
                                 <input type="number"
                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
-                                       id="nbrd_pass" name="nbr_pass" min="1" value="1"/>
+                                       id="nbrd_pass" name="prix" min="1"/>
 
                                 <label class="mb-2 font-semibold" for="dated"> Heure d'arriver</label>
                                 <input type="time"
                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3"
-                                       id="dadted" name="dated">
+                                       id="heure_arr" name="heure_arr">
                             </div>
 
                         </div>
@@ -191,10 +229,10 @@
                                     ${vols.nbr_place}
                             </td>
                             <td>
-                                edit
+                                <a href='edit.vol& id="${vols.id}"'>Edit </a>
                             </td>
                             <td>
-                                suppr
+                                <a href="delete.vol?id=${vols.id}">Supprimer </a>
                             </td>
 
 
