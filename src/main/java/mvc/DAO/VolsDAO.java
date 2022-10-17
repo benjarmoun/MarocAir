@@ -4,7 +4,9 @@ import mvc.DAO.repository.DAO;
 import mvc.metier.entities.Vols;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,14 +30,20 @@ public class VolsDAO implements DAO<Vols> {
 
     @Override
     public List<Vols> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+        List<Vols> vols = new ArrayList<>();
+        PreparedStatement stm = getConnection().prepareStatement("SELECT v.id, vd.nom ville_depart, va.nom ville_arriver, date_dep, date_arr, prix, nbr_place from vol v join villes vd on v.id_depart = vd.id join villes va on va.id = v.id_arrive");
+        ResultSet rs = stm.executeQuery();
+        while (rs.next()) {
+            vols.add(new Vols(rs.getInt("id"), rs.getInt("nbr_place"), rs.getString("date_dep"), rs.getString("date_arr"), rs.getFloat("prix"), rs.getString("ville_depart"), rs.getString("ville_arriver")));
+        }
+        return vols;
     }
 
     @Override
     public boolean save(Vols vols) throws SQLException, ClassNotFoundException {
         PreparedStatement stm = getConnection().prepareStatement("INSERT INTO marocair.vol (date_dep, date_arr, nbr_place, prix, id_depart, id_arrive)VALUES (?, ?, ?, ?, ?, ?)");
-        stm.setTime(1, vols.getDate_dep());
-        stm.setTime(2, vols.getDate_arr());
+        stm.setString(1, vols.getDate_dep());
+        stm.setString(2, vols.getDate_arr());
         stm.setInt(3, vols.getNbr_place());
         stm.setFloat(4, vols.getPrix());
         stm.setInt(5, vols.getVille_dep());
@@ -46,11 +54,12 @@ public class VolsDAO implements DAO<Vols> {
     @Override
     public void update(Vols vols, int i) {
 
-
     }
 
     @Override
-    public void delete(long id) {
-
+    public boolean delete(int id) throws SQLException, ClassNotFoundException {
+        PreparedStatement stm= getConnection().prepareStatement("DELETE FROM marocair.vol WHERE id = ?");
+        stm.setInt(1,id);
+        return stm.executeUpdate()!=0;
     }
 }

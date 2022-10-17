@@ -8,22 +8,11 @@
         <servlet-class>mvc.controller.AdminSerlvet</servlet-class>
 
     </servlet>
-    <servlet>
-        <servlet-name>user</servlet-name>
-        <servlet-class>mvc.controller.UserServlet</servlet-class>
 
-    </servlet>
     <servlet>
         <servlet-name>vol</servlet-name>
         <servlet-class>mvc.controller.VolServlet</servlet-class>
     </servlet>
-
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>*.us</url-pattern>
-        <!--        <url-pattern>*.personne</url-pattern>-->
-    </servlet-mapping>
-
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>admin</servlet-name>-->
 <!--        <url-pattern>*.ad</url-pattern>-->
@@ -33,5 +22,6 @@
 <!--        <servlet-name>vol</servlet-name>-->
 <!--        <url-pattern>*.vol</url-pattern>-->
 <!--    </servlet-mapping>-->
+
 
 </web-app>

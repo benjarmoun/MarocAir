@@ -48,7 +48,7 @@ public class VilleDAO implements DAO<Ville> {
     }
 
     @Override
-    public void delete(long id) {
-
+    public boolean delete(int id) {
+return false;
     }
 }
