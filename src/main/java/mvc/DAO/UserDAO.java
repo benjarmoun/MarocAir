@@ -28,6 +28,22 @@ public class UserDAO implements Auth<User> {
 
     }
 
+    @Override
+    public boolean register(User user) throws Exception{
+        Connection connect = getConnection();
+        PreparedStatement stmt = connect.prepareStatement("INSERT INTO `user`(`fname`, `lname`, `email`, `password`) " +
+                "VALUES (?,?,?,?)");
+        stmt.setString(1, user.getFname());
+        stmt.setString(2, user.getLname());
+        stmt.setString(3, user.getEmail());
+        stmt.setString(4, Hash.MD5(user.getPassword()));
+//        ResultSet rs = stmt.executeUpdate();
+
+        if (stmt.executeUpdate() == 1) {
+            return true;
+        }
+        return false;
+    }
 
 
 }
