@@ -66,6 +66,9 @@ public class VolServlet extends HttpServlet {
             }
 //            PrintWriter out = resp.getWriter();
 //            out.println(req.getParameter("id"));
+        } else if (path.equals("/dashboardUser.vol")) {
+            req.getRequestDispatcher("views/client/DashboardUser.jsp").forward(req, resp);
+
         }
     }
 

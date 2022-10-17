@@ -42,8 +42,8 @@ public class UserServlet extends HttpServlet {
 
             try {
                 if (userDAO.login(user)) {
-                    resp.sendRedirect("/dashboard.vol");
-//                    req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
+                    resp.sendRedirect("/dashboardUser.vol");
+//                    req.getRequestDispatcher("views/admin/DashboardUser.jsp").forward(req, resp);
 
                 } else pr.println("false");
             } catch (Exception e) {
