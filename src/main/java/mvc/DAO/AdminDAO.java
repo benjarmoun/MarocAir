@@ -17,17 +17,19 @@ import static mvc.helpers.Connexion.getConnection;
 
 public class AdminDAO implements Auth<Admin> {
     @Override
-    public boolean login(Admin admin) throws Exception {
+    public Admin login(Admin admin) throws Exception {
         Connection connect = getConnection();
         PreparedStatement stmt = connect.prepareStatement("select * from admin where username = ?");
         stmt.setString(1, admin.getUsername());
         ResultSet rs = stmt.executeQuery();
-
+        Admin admin1=new Admin();
         if (rs.next()) {
             if (Hash.MD5(admin.getPassword()).equals(rs.getString("password")))
-                return rs.getInt(1) == 1;
+
+                admin1.setUsername(rs.getString("username"));
+            return admin1;
         }
-        return false;
+        return null;
     }
 
     @Override

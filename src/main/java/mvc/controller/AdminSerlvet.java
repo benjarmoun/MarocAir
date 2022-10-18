@@ -40,7 +40,7 @@ public class AdminSerlvet extends HttpServlet {
             adminDAO = new AdminDAO();
             PrintWriter pr = resp.getWriter();
             try {
-                if (adminDAO.login(admin)) {
+                if (adminDAO.login(admin)!=null) {
 
                     Cookie ck=new Cookie("admin","1");//creating cookie object
                     resp.addCookie(ck);//adding cookie in the response
