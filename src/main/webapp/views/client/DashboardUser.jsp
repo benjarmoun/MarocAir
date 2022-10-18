@@ -207,13 +207,10 @@
                             <td>
                                 <form method="post" action="add.res">
                                     <input type="hidden" name="vol_id" value=${vols.id} >
-                                    <input type="hidden" name="user_id" value=${vols.id} >
+<%--                                    <input type="hidden" name="user_id" value=${user.id} >--%>
                                     <button type="submit" >Reserver</button>
                                 </form>
                             </td>
-<%--                            <td>--%>
-<%--                                <a href="delete.vol?id=${vols.id}">Supprimer </a>--%>
-<%--                            </td>--%>
 
 
                         </tr>
