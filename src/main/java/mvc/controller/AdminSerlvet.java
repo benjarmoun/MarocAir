@@ -2,6 +2,7 @@ package mvc.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,10 +41,17 @@ public class AdminSerlvet extends HttpServlet {
             PrintWriter pr = resp.getWriter();
             try {
                 if (adminDAO.login(admin)) {
+
+                    Cookie ck=new Cookie("admin","1");//creating cookie object
+                    resp.addCookie(ck);//adding cookie in the response
                     resp.sendRedirect("/dashboard.vol");
 //                    req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
 
-                } else pr.println("false");
+                } else
+
+                    resp.sendRedirect("/login.ad");
+
+                pr.println("false");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

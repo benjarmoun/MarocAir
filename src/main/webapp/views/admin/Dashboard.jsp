@@ -126,7 +126,6 @@
                                             <li class="text-md font-bold text-red-500 text-sm">${error}</li>
 
                                         </c:forEach>
-                                        <li class="text-md font-bold text-red-500 text-sm">Email field is required.</li>
                                     </div>
                                 </div>
                             </div>

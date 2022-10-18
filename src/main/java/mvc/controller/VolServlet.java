@@ -2,6 +2,7 @@ package mvc.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -41,8 +42,23 @@ public class VolServlet extends HttpServlet {
         String path = req.getServletPath();
         VolModel volModel = new VolModel();
         VilleModel villeModel = new VilleModel();
-
+        int testCokie = 0;
         if (path.equals("/dashboard.vol")) {
+
+            Cookie[] ck = req.getCookies();
+            if (ck != null) {
+                for (Cookie cookie : ck) {
+                    if (cookie.getName().equals("admin")) {
+                        testCokie++;
+                    }
+                }
+            }
+            if (testCokie == 0){
+
+                resp.sendRedirect("/login.ad");
+            } else {
+
+
             try {
                 volModel.setVols((ArrayList<Vols>) volsDAO.getAll());
                 villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
@@ -53,6 +69,8 @@ public class VolServlet extends HttpServlet {
             req.setAttribute("villes", villeModel.getVilles());
             req.setAttribute("erreur", error);
             req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
+            }
+
 
             //delete vols
         } else if (path.equals("/delete.vol")) {
