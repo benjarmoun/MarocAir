@@ -25,7 +25,10 @@
     <servlet-mapping>
         <servlet-name>user</servlet-name>
         <url-pattern>*.us</url-pattern>
-        <!--        <url-pattern>*.personne</url-pattern>-->
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reservation</servlet-name>
+        <url-pattern>*.res</url-pattern>
     </servlet-mapping>
 
 <!--    <servlet-mapping>-->
