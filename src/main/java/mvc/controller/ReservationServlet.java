@@ -29,6 +29,11 @@ public class ReservationServlet  extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getServletPath();
         if (path.equals("/add.res")) {
             PrintWriter out = resp.getWriter();
@@ -53,11 +58,6 @@ public class ReservationServlet  extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 
     @Override

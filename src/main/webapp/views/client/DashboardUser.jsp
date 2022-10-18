@@ -205,7 +205,11 @@
                                     ${vols.nbr_place}
                             </td>
                             <td>
-                                <a href='add.res?vol_id=${vols.id}&user_id=${vols.id}'>Reserver </a>
+                                <form method="post" action="add.res">
+                                    <input type="hidden" name="vol_id" value=${vols.id} >
+                                    <input type="hidden" name="user_id" value=${vols.id} >
+                                    <button type="submit" >Reserver</button>
+                                </form>
                             </td>
 <%--                            <td>--%>
 <%--                                <a href="delete.vol?id=${vols.id}">Supprimer </a>--%>
