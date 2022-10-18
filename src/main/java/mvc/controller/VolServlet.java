@@ -57,7 +57,7 @@ public class VolServlet extends HttpServlet {
             //delete vols
         } else if (path.equals("/delete.vol")) {
             try {
-                if(volsDAO.delete(Integer.parseInt(req.getParameter("id")))){
+                if (volsDAO.delete(Integer.parseInt(req.getParameter("id")))) {
                     resp.sendRedirect("/dashboard.vol");
 
                 }
@@ -67,6 +67,15 @@ public class VolServlet extends HttpServlet {
 //            PrintWriter out = resp.getWriter();
 //            out.println(req.getParameter("id"));
         } else if (path.equals("/dashboardUser.vol")) {
+            VilleModel villeModels = new VilleModel();
+
+            try {
+                villeModels.setVilles((ArrayList<Ville>) villeDAO.getAll());
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            req.setAttribute("villes", villeModels.getVilles());
+
             req.getRequestDispatcher("views/client/DashboardUser.jsp").forward(req, resp);
 
         }
