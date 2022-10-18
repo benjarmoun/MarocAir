@@ -2,6 +2,7 @@ package mvc.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,8 +40,15 @@ public class ReservationServlet  extends HttpServlet {
             PrintWriter out = resp.getWriter();
 
             Reservations reservations = new Reservations();
-            reservations.setVol_id(Integer.parseInt(req.getParameter("vol_id")));
-            reservations.setUser_id(Integer.parseInt(req.getParameter("user_id")));
+            Cookie ck[]=req.getCookies();
+            for(int i=0;i<ck.length;i++){
+                if (ck[i].getName().equals("user")){
+                    int userid = Integer.parseInt(ck[i].getValue());
+                    reservations.setUser_id(userid);
+                    reservations.setVol_id(Integer.parseInt(req.getParameter("vol_id")));
+                }
+            }
+
             this.error = new ArrayList<>();
             try {
                 if (error.size() == 0) {
