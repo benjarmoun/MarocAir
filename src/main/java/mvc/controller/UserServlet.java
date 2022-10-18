@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,11 +40,13 @@ public class UserServlet extends HttpServlet {
 
             userDAO = new UserDAO();
             PrintWriter pr = resp.getWriter();
-
             try {
-                if (userDAO.login(user)) {
+            User user1 = userDAO.login(user);
+                if (user1 != null)
+                {
+                    Cookie ck=new Cookie("user",String.valueOf(user1.getId()));
+                    resp.addCookie(ck);
                     resp.sendRedirect("/dashboardUser.vol");
-//                    req.getRequestDispatcher("views/admin/DashboardUser.jsp").forward(req, resp);
 
                 } else pr.println("false");
             } catch (Exception e) {
