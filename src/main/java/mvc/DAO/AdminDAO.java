@@ -25,7 +25,6 @@ public class AdminDAO implements Auth<Admin> {
         Admin admin1=new Admin();
         if (rs.next()) {
             if (Hash.MD5(admin.getPassword()).equals(rs.getString("password")))
-
                 admin1.setUsername(rs.getString("username"));
             return admin1;
         }
