@@ -85,14 +85,15 @@ public class VolServlet extends HttpServlet {
 //            PrintWriter out = resp.getWriter();
 //            out.println(req.getParameter("id"));
         } else if (path.equals("/dashboardUser.vol")) {
-            VilleModel villeModels = new VilleModel();
-
             try {
-                villeModels.setVilles((ArrayList<Ville>) villeDAO.getAll());
+                volModel.setVols((ArrayList<Vols>) volsDAO.getAll());
+                villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            req.setAttribute("villes", villeModels.getVilles());
+            req.setAttribute("vols", volModel.getVols());
+            req.setAttribute("villes", villeModel.getVilles());
+            req.setAttribute("erreur", error);
 
             req.getRequestDispatcher("views/client/DashboardUser.jsp").forward(req, resp);
 

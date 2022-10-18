@@ -17,6 +17,10 @@
         <servlet-name>vol</servlet-name>
         <servlet-class>mvc.controller.VolServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>reservation</servlet-name>
+        <servlet-class>mvc.controller.ReservationServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>user</servlet-name>

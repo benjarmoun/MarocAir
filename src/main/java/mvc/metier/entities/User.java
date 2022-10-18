@@ -1,6 +1,7 @@
 package mvc.metier.entities;
 
 public class User {
+    private  int id;
     private String fname;
     private String lname;
     private String email;
@@ -14,6 +15,14 @@ public class User {
     }
 
     public User(){
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFname() {
