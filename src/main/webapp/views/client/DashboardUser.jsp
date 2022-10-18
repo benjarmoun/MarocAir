@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>--%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
+
+
 <html>
 <head>
     <title>Title</title>
@@ -98,8 +102,17 @@
                         <div class="flex w-full justify-around">
                             <div class="flex w-full flex-col p-3">
                                 <label class="mb-2 font-semibold" for="depart" >Depart</label>
-                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="depart" name="depart" placeholder="Depart">
+<%--                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="depart" name="depart" placeholder="Depart">--%>
+                                <select name="depart" id="depart" placeholder="Depart"
+                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <option value=""></option>
 
+                                    <c:forEach items="${villes}" var="ville">
+
+                                        <option value="${ville.id}"> ${ville.nom}</option>
+                                    </c:forEach>
+
+                                </select>
                                 <label class="mb-2 font-semibold " for="nbr_pass">Number of passengers</label>
                                 <input type="number" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="nbr_pass" name="nbr_pass" min="1" value="1" />
 
@@ -108,8 +121,17 @@
                             </div>
                             <div class="flex w-full flex-col p-3">
                                 <label class="mb-2 font-semibold" for="arrive">Destination</label>
-                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="arrive" name="arrive" placeholder="Arrive">
+<%--                                <input type="text" class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3" id="arrive" name="arrive" placeholder="Arrive">--%>
+                                <select name="arrive" id="arrive" placeholder="Arrive"
+                                        class="w-full max-w-lg rounded-lg border border-slate-200 px-2 py-1 hover:border-blue-500 mb-3">
+                                    <option value=""></option>
 
+                                    <c:forEach items="${villes}" var="ville">
+
+                                        <option value="${ville.id}"> ${ville.nom}</option>
+                                    </c:forEach>
+
+                                </select>
                                 <div class="mt-9 mb-5" >
                                     <input type="checkbox" name="round_trip" value="round_trip" id="round_trip" onchange="displayReturnDateForm()">
                                     <label class="mb-2 font-semibold" for="arrive">Round-trip</label>
@@ -136,25 +158,64 @@
                         <th>Date de depart</th>
                         <th>Date d'arrivé</th>
                         <th>Prix</th>
+                        <th>Nbr de places</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
+<%--                    <tbody>--%>
+<%--                    <tr>--%>
+<%--                        <th>1</th>--%>
+<%--                        <td>Cy Ganderton</td>--%>
+<%--                        <td>Quality Control Specialist</td>--%>
+<%--                        <td>Littel, Schaden and Vandervort</td>--%>
+<%--                        <td>Canada</td>--%>
+<%--                        <td>12/16/2020</td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <th>2</th>--%>
+<%--                        <td>Hart Hagerty</td>--%>
+<%--                        <td>Desktop Support Technician</td>--%>
+<%--                        <td>Zemlak, Daniel and Leannon</td>--%>
+<%--                        <td>United States</td>--%>
+<%--                        <td>12/5/2020</td>--%>
+<%--                    </tr>--%>
                     <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Littel, Schaden and Vandervort</td>
-                        <td>Canada</td>
-                        <td>12/16/2020</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>Hart Hagerty</td>
-                        <td>Desktop Support Technician</td>
-                        <td>Zemlak, Daniel and Leannon</td>
-                        <td>United States</td>
-                        <td>12/5/2020</td>
-                    </tr>
+                    <c:forEach items="${vols}" var="vols">
+<%--                        <% System.out.println() %>--%>
+                        <tr>
+                            <th>
+                                    ${vols.id}/
+                            </th>
+                            <td>
+                                    ${vols.nVille_dep}
+                            </td>
+                            <td>
+                                    ${vols.nVille_arr}
+                            </td>
+                            <td>
+                                    ${vols.date_dep}
+                            </td>
+                            <td>
+                                    ${vols.date_arr}
+                            </td>
+                            <td>
+                                    ${vols.prix} DH
+                            </td>
+                            <td>
+                                    ${vols.nbr_place}
+                            </td>
+                            <td>
+                                <a href='add.res?vol_id=${vols.id}&user_id=${vols.id}'>Reserver </a>
+                            </td>
+<%--                            <td>--%>
+<%--                                <a href="delete.vol?id=${vols.id}">Supprimer </a>--%>
+<%--                            </td>--%>
+
+
+                        </tr>
+                    </c:forEach>
+
+                    </tbody>
 
                     </tbody>
                     <tfoot>
@@ -165,6 +226,8 @@
                         <th>Date de depart</th>
                         <th>Date d'arrivé</th>
                         <th>Prix</th>
+                        <th>Nbr de places</th>
+                        <th>Action</th>
                     </tr>
                     </tfoot>
                 </table>
