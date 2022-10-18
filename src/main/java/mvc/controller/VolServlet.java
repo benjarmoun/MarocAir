@@ -53,22 +53,22 @@ public class VolServlet extends HttpServlet {
                     }
                 }
             }
-            if (testCokie == 0){
+            if (testCokie == 0) {
 
                 resp.sendRedirect("/login.ad");
             } else {
 
 
-            try {
-                volModel.setVols((ArrayList<Vols>) volsDAO.getAll());
-                villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            req.setAttribute("vols", volModel.getVols());
-            req.setAttribute("villes", villeModel.getVilles());
-            req.setAttribute("erreur", error);
-            req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
+                try {
+                    volModel.setVols((ArrayList<Vols>) volsDAO.getAll());
+                    villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                req.setAttribute("vols", volModel.getVols());
+                req.setAttribute("villes", villeModel.getVilles());
+                req.setAttribute("erreur", error);
+                req.getRequestDispatcher("views/admin/Dashboard.jsp").forward(req, resp);
             }
 
 
@@ -82,23 +82,41 @@ public class VolServlet extends HttpServlet {
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-//            PrintWriter out = resp.getWriter();
 //            out.println(req.getParameter("id"));
         } else if (path.equals("/dashboardUser.vol")) {
-            try {
-                volModel.setVols((ArrayList<Vols>) volsDAO.getAll());
-                villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-            req.setAttribute("vols", volModel.getVols());
-            req.setAttribute("villes", villeModel.getVilles());
-            req.setAttribute("erreur", error);
+            PrintWriter out = resp.getWriter();
 
-            req.getRequestDispatcher("views/client/DashboardUser.jsp").forward(req, resp);
+
+            if (req.getParameter("depart") != null) {
+
+                int depart = Integer.parseInt(req.getParameter("depart"));
+                int arrive = Integer.parseInt(req.getParameter("arrive"));
+                String dateVoyage = req.getParameter("dated");
+                req.setAttribute("dateVoyage", dateVoyage);
+
+
+                try {
+                    volModel.setVols((ArrayList<Vols>) volsDAO.getAll(depart, arrive));
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
         }
+
+
+        try {
+
+            villeModel.setVilles((ArrayList<Ville>) villeDAO.getAll());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        req.setAttribute("vols", volModel.getVols());
+        req.setAttribute("villes", villeModel.getVilles());
+        req.setAttribute("erreur", error);
+        req.getRequestDispatcher("views/client/DashboardUser.jsp").forward(req, resp);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -58,8 +58,20 @@ public class VolsDAO implements DAO<Vols> {
 
     @Override
     public boolean delete(int id) throws SQLException, ClassNotFoundException {
-        PreparedStatement stm= getConnection().prepareStatement("DELETE FROM marocair.vol WHERE id = ?");
-        stm.setInt(1,id);
-        return stm.executeUpdate()!=0;
+        PreparedStatement stm = getConnection().prepareStatement("DELETE FROM marocair.vol WHERE id = ?");
+        stm.setInt(1, id);
+        return stm.executeUpdate() != 0;
+    }
+
+    public List<Vols> getAll(int depart, int retour) throws SQLException, ClassNotFoundException {
+        List<Vols> vols = new ArrayList<>();
+        PreparedStatement stm = getConnection().prepareStatement("SELECT v.id, vd.nom ville_depart, va.nom ville_arriver, date_dep, date_arr, prix, nbr_place from vol v join villes vd on v.id_depart = vd.id join villes va on va.id = v.id_arrive where (vd.id = ? and va.id =  ?)");
+        stm.setInt(1, depart);
+        stm.setInt(2, retour);
+        ResultSet rs = stm.executeQuery();
+        while (rs.next()) {
+            vols.add(new Vols(rs.getInt("id"), rs.getInt("nbr_place"), rs.getString("date_dep"), rs.getString("date_arr"), rs.getFloat("prix"), rs.getString("ville_depart"), rs.getString("ville_arriver")));
+        }
+        return vols;
     }
 }

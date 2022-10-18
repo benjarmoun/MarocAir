@@ -204,11 +204,8 @@
                                     ${vols.nbr_place}
                             </td>
                             <td>
-
-
                                 <form method="post" action="add.res">
                                     <input type="hidden" name="vol_id" value=${vols.id}>
-                                    <input type="hidden" name="dateVoyage" value=${dateVoyage}>
                                         <%--                                    <input type="hidden" name="user_id" value=${user.id} >--%>
                                     <button type="submit">Reserver</button>
                                 </form>
