@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface DAO<T> {
 
-    T get(int id);
+    T get(int id) throws SQLException, ClassNotFoundException;
 
     List<T> getAll() throws SQLException, ClassNotFoundException;
 

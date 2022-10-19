@@ -3,6 +3,16 @@ package mvc.metier.entities;
 public class Reservations {
     private int id, vol_id, user_id;
 
+    public String getDateVoyage() {
+        return dateVoyage;
+    }
+
+    public void setDateVoyage(String dateVoyage) {
+        this.dateVoyage = dateVoyage;
+    }
+
+    private String dateVoyage;
+
     public Reservations(int id, int vol_id, int user_id) {
         this.id = id;
         this.vol_id = vol_id;

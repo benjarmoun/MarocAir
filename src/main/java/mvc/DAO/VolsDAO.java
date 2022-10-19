@@ -24,8 +24,17 @@ public class VolsDAO implements DAO<Vols> {
     }
 
     @Override
-    public Vols get(int id) {
-        return null;
+    public Vols get(int id) throws SQLException, ClassNotFoundException {
+        Vols vols=null;
+        PreparedStatement stm = getConnection().prepareStatement("SELECT v.id, vd.nom ville_depart, va.nom ville_arriver, date_dep, date_arr, prix, nbr_place from vol v join villes vd on v.id_depart = vd.id join villes va on va.id = v.id_arrive where v.id= ?");
+        stm.setInt(1, id);
+        ResultSet rs = stm.executeQuery();
+        while (rs.next()) {
+            vols=new Vols(rs.getInt("id"), rs.getInt("nbr_place"), rs.getString("date_dep"), rs.getString("date_arr"), rs.getFloat("prix"), rs.getString("ville_depart"), rs.getString("ville_arriver"));
+        }
+        return vols;
+
+
     }
 
     @Override

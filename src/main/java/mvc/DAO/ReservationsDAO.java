@@ -47,9 +47,10 @@ public class ReservationsDAO implements DAO<Reservations> {
 
     @Override
     public boolean save(Reservations reservations) throws SQLException, ClassNotFoundException {
-        PreparedStatement stm = getConnection().prepareStatement("INSERT INTO marocair.reservation (vol_id, user_id)VALUES (?, ?)");
+        PreparedStatement stm = getConnection().prepareStatement("INSERT INTO marocair.reservation (vol_id, user_id,date_Voyage)VALUES (?, ?,?)");
         stm.setInt(1, reservations.getVol_id());
         stm.setInt(2, reservations.getUser_id());
+        stm.setString(3, reservations.getDateVoyage());
         return stm.executeUpdate() != 0;
     }
 

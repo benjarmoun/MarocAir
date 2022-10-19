@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import mvc.DAO.ReservationsDAO;
 import mvc.DAO.VilleDAO;
 import mvc.DAO.VolsDAO;
+import mvc.helpers.Mailer;
+import mvc.helpers.SendMail;
 import mvc.helpers.SendingEmail;
 import mvc.metier.entities.Reservations;
 import mvc.metier.entities.Ville;
@@ -79,6 +81,7 @@ public class ReservationServlet  extends HttpServlet {
             for(int i=0;i<ck.length;i++){
                 if (ck[i].getName().equals("user")){
                     int userid = Integer.parseInt(ck[i].getValue());
+                    reservations.setDateVoyage(req.getParameter("dateVoyage"));
                     reservations.setUser_id(userid);
                     reservations.setVol_id(Integer.parseInt(req.getParameter("vol_id")));
 
@@ -89,8 +92,12 @@ public class ReservationServlet  extends HttpServlet {
             try {
                 if (error.size() == 0) {
                     if (reservationsDAO.save(reservations)) {
-                        SendingEmail.send("benjarmoun123@gmail.com","Reservation confirmation","Your reservation has been done successfully ");
+//                        SendingEmail.send("otman.moubtahij15@gmail.com","Reservation confirmation","Your reservation has been done successfully ");
 
+                       Vols vols=new VolsDAO().get(reservations.getVol_id());
+                        String confirmMsg = "Reference number: "+vols.getId()+"\nYour Trip Date:  " + reservations.getDateVoyage() + " \n\tStart city -    "+ vols.getnVille_dep() +"\t\t,    Start time:     " + vols.getDate_dep() +" \n\t end time -    "+ vols.getDate_arr() ;
+                        SendMail.sendMessage("otman.moubtahij15@gmail.com","Confirmation reservation", confirmMsg);
+//                        Mailer.send("testdev53m@gmail.com","xxxxx","otman.moubtahij15@gmail.com","hello javatpoint","How r u?");
                         resp.sendRedirect("/dashboardUser.vol");
                         this.error = new ArrayList<>();
                     }

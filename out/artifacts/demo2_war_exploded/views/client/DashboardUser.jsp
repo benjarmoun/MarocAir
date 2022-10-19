@@ -75,12 +75,12 @@
         <!-- aside -->
         <aside class="flex h-auto w-1/6 flex-col space-y-2 border-r-2 border-gray-200 bg-white p-2"
                x-show="asideOpen">
-            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+            <a href="/dashboardUser.vol" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
                 <span class="text-2xl"><i class="bx bx-home"></i></span>
                 <span>Dashboard</span>
             </a>
 
-            <a href="#" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
+            <a href="/reservations.res" class="flex items-center space-x-1 rounded-md px-2 py-3 hover:bg-gray-100 hover:text-blue-600">
                 <span class="text-2xl"><i class="bx bx-cart"></i></span>
                 <span>Reservations</span>
             </a>
@@ -204,8 +204,11 @@
                                     ${vols.nbr_place}
                             </td>
                             <td>
+
+
                                 <form method="post" action="add.res">
                                     <input type="hidden" name="vol_id" value=${vols.id}>
+                                    <input type="hidden" name="dateVoyage" value=${dateVoyage}>
                                         <%--                                    <input type="hidden" name="user_id" value=${user.id} >--%>
                                     <button type="submit">Reserver</button>
                                 </form>
